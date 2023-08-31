@@ -16,9 +16,11 @@ limitations under the License.
 
 package com.ykis.ykispam.firebase.model.service.impl
 
+import com.google.firebase.ktx.BuildConfig
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.ykis.ykispam.core.trace
 import com.ykis.ykispam.firebase.model.service.repo.ConfigurationService
 import kotlinx.coroutines.tasks.await
@@ -48,16 +50,16 @@ class ConfigurationServiceImpl @Inject constructor() : ConfigurationService {
     override val isMobileCheckConfig: Boolean
         get() = remoteConfig[LOADING_FROM_MOBILE].asBoolean()
     override val agreementTitle: String
-        get() = remoteConfig[AGREMENT_TITLE].asString()
+        get() = remoteConfig[AGREEMENT_TITLE].asString()
 
     override val agreementText: String
-        get() = remoteConfig[AGREMENT_TEXT].asString()
+        get() = remoteConfig[AGREEMENT_TEXT].asString()
 
     companion object {
         private const val LOADING_FROM_WIFI = "loading_from_wifi"
         private const val LOADING_FROM_MOBILE = "loading_from_mobile"
-        private const val AGREMENT_TITLE = "agreement_title"
-        private const val AGREMENT_TEXT = "agreement_text"
+        private const val AGREEMENT_TITLE = "agreement_title"
+        private const val AGREEMENT_TEXT = "agreement_text"
 
         private const val FETCH_CONFIG_TRACE = "fetchConfig"
     }

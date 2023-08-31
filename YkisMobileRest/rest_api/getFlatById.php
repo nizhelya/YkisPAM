@@ -14,8 +14,8 @@ if (isset($_POST['address_id']) && !empty($_POST['address_id']) &&
     $dbOperationsObject = new DBOperations();
     $generalFunctionsObject = new GeneralFunctionsClass();
 
-        $resultAppartments = $dbOperationsObject->getFlatById($address_id);
-        $appartments = $generalFunctionsObject->getFlatById($resultAppartments);
+        $resultApartments = $dbOperationsObject->getFlatById($address_id);
+        $apartments = $generalFunctionsObject->getFlatById($resultApartments);
 
         $response["success"] = 1;
         $response["message"] = "Успешно";

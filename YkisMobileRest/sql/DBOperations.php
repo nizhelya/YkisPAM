@@ -20,7 +20,7 @@ class DBOperations {
         return mysqli_query($com->getDb(), $sql);
     }
 
-    public function getAppartmentsByUser($uid){
+    public function getApartmentsByUser($uid){
         $com = new DbConnect();
         $sql = 'SELECT  t2.id , t2.user_id ,t2.uid ,  t1.`address_id`, t1.`raion_id`, t1.`house_id`, (case when t3.`osmd_id` = 0 then "Внески ОСББ" else t3.abbr end) as osbb, t1.`kod`, t1.`address`, t1.`nanim`, t1.`fio`, t1.`order`, t1.`data`, t1.`area_full`, t1.`area_life`, t1.`area_dop`, t1.`area_balk`, t1.`area_otopl`, t1.`room`,
     (case when t1.`privat` = "да" then true else false end) as privat , t1.`tenant`, t1.`tenant_tbo`, t1.`podnan`, t1.`absent`,(case when t1.`subsidia` = "да" then true else false end) as subsidia, (case when t1.`vxvoda` = "да" then true else false end) as vxvoda, (case when t1.`teplomer` = "да" then true else false end) as teplomer, t1.`distributor`, t1.`dvodomer_id`, t1.`dteplomer_id`,(case when t1.`lift` = "да" then true else false end) as lift, (case when t1.`kvartplata` = "да" then true else false end) as kvartplata,

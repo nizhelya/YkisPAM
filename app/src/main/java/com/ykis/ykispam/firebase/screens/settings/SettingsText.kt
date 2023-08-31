@@ -12,14 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -36,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.ykis.ykispam.R
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SettingsText(
     @DrawableRes icon: Int,
@@ -89,14 +87,14 @@ fun SettingsText(
                     // setting text title
                     Text(
                         text = stringResource(id = name),
-                        style = MaterialTheme.typography.subtitle2,
+                        style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Start,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     // current value shown
                     Text(
                         text = state.value,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Start,
                     )
                 }
@@ -125,7 +123,7 @@ private fun TextEditDialog(
     }
 
     Surface(
-        color = MaterialTheme.colors.surface
+        color = MaterialTheme.colorScheme.surface
     ) {
 
         Column(

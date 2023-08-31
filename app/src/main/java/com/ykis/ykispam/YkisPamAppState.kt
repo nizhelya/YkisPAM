@@ -17,27 +17,34 @@ limitations under the License.
 package com.ykis.ykispam
 
 import android.content.res.Resources
-import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Stable
 import androidx.navigation.NavHostController
 import com.ykis.ykispam.core.snackbar.SnackbarManager
 import com.ykis.ykispam.core.snackbar.SnackbarMessage.Companion.toMessage
+import com.ykis.ykispam.pam.domain.apartment.ApartmentEntity
+import com.ykis.ykispam.reply.data.Email
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import kotlin.reflect.KProperty
 
+
+@Stable
 class YkisPamAppState(
-    val scaffoldState: ScaffoldState,
     val navController: NavHostController,
+    val snackbarHostState: SnackbarHostState,
     private val snackbarManager: SnackbarManager,
     private val resources: Resources,
-    coroutineScope: CoroutineScope
+    val coroutineScope: CoroutineScope
 ) {
+
     init {
         coroutineScope.launch {
             snackbarManager.snackbarMessages.filterNotNull().collect { snackbarMessage ->
                 val text = snackbarMessage.toMessage(resources)
-                scaffoldState.snackbarHostState.showSnackbar(text)
+                snackbarHostState.showSnackbar(text)
             }
         }
     }
@@ -64,7 +71,6 @@ class YkisPamAppState(
             popUpTo(0) { inclusive = true }
         }
     }
-
-
-
 }
+
+

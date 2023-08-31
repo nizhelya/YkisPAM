@@ -20,15 +20,16 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldColors
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -61,7 +62,7 @@ fun BasicField(
         singleLine = true,
 //        colors = TextFieldColors(Color(0xFFFFB945)),
         modifier = Modifier
-            .fillMaxWidth(),
+            .widthIn(0.dp, 480.dp),
         label = {
             Text(
                 text = stringResource(id = label),
@@ -70,7 +71,7 @@ fun BasicField(
         },
         value = value,
         onValueChange = { onNewValue(it) },
-        placeholder = { Text(stringResource(id=placeholder)) }
+        placeholder = { Text(stringResource(id = placeholder)) }
     )
 }
 
@@ -80,7 +81,7 @@ fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier =
         singleLine = true,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp, 0.dp, 16.dp, 0.dp),
+            .padding(16.dp, 4.dp, 16.dp, 4.dp),
         label = {
             Text(
                 text = stringResource(id = R.string.email)
@@ -127,7 +128,7 @@ private fun PasswordField(
     OutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp, 0.dp, 16.dp, 0.dp),
+            .padding(16.dp, 4.dp, 16.dp, 4.dp),
         label = {
             Text(
                 text = stringResource(id = placeholder)
@@ -146,6 +147,7 @@ private fun PasswordField(
         visualTransformation = visualTransformation
     )
 }
+
 @Composable
 fun LabelField(
     value: String,
@@ -155,7 +157,9 @@ fun LabelField(
 ) {
     OutlinedTextField(
         singleLine = false,
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp, 4.dp, 16.dp, 4.dp),
         readOnly = true,
         maxLines = 2,
 
@@ -166,16 +170,17 @@ fun LabelField(
         },
         value = value,
         onValueChange = {},
-        placeholder = { Text(stringResource(id=placeholder)) }
+        placeholder = { Text(stringResource(id = placeholder)) }
     )
 }
+
 @Composable
 fun Field(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
     OutlinedTextField(
         singleLine = true,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp, 0.dp, 16.dp, 0.dp),
+            .padding(16.dp, 4.dp, 16.dp, 4.dp),
         label = {
             Text(
                 text = stringResource(id = R.string.email)

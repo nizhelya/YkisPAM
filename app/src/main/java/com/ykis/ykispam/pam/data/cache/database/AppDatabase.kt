@@ -4,7 +4,7 @@ package com.ykis.ykispam.pam.data.cache.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.ykis.ykispam.di.ApplicationScope
-import com.ykis.ykispam.pam.data.cache.dao.AppartmentDao
+import com.ykis.ykispam.pam.data.cache.dao.ApartmentDao
 import com.ykis.ykispam.pam.data.cache.dao.FamilyDao
 import com.ykis.ykispam.pam.data.cache.dao.HeatMeterDao
 import com.ykis.ykispam.pam.data.cache.dao.HeatReadingDao
@@ -12,7 +12,7 @@ import com.ykis.ykispam.pam.data.cache.dao.PaymentDao
 import com.ykis.ykispam.pam.data.cache.dao.ServiceDao
 import com.ykis.ykispam.pam.data.cache.dao.WaterMeterDao
 import com.ykis.ykispam.pam.data.cache.dao.WaterReadingDao
-import com.ykis.ykispam.pam.domain.appartment.AppartmentEntity
+import com.ykis.ykispam.pam.domain.apartment.ApartmentEntity
 import com.ykis.ykispam.pam.domain.family.FamilyEntity
 import com.ykis.ykispam.pam.domain.heat.meter.HeatMeterEntity
 import com.ykis.ykispam.pam.domain.heat.reading.HeatReadingEntity
@@ -27,7 +27,7 @@ import javax.inject.Provider
 
 @Database(
     entities = [
-        AppartmentEntity::class,
+        ApartmentEntity::class,
         FamilyEntity::class,
         ServiceEntity::class,
         PaymentEntity::class,
@@ -39,7 +39,7 @@ import javax.inject.Provider
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun appartmentDao(): AppartmentDao
+    abstract fun apartmentDao(): ApartmentDao
     abstract fun familyDao(): FamilyDao
     abstract fun serviceDao(): ServiceDao
     abstract fun paymentDao(): PaymentDao

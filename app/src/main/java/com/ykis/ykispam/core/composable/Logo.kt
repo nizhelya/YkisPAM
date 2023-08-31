@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,35 +24,36 @@ import com.ykis.ykispam.R
 
 @Composable
 fun LogoImage() {
-        Row(
-            modifier = Modifier,
+    Row(
+        modifier = Modifier,
 //            .padding(paddingValues = PaddingValues())
 //            .semantics(mergeDescendants = true) {},
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
 
-        ) {
-            val imageModifier = Modifier
-                .size(60.dp)
-                .clip(CircleShape)
-                .border(BorderStroke(0.dp, Color.Transparent))
-                .background(Color.Transparent)
-                .align(Alignment.CenterVertically)
+    ) {
+        val imageModifier = Modifier
+            .size(60.dp)
+            .clip(CircleShape)
+            .border(BorderStroke(0.dp, Color.Transparent))
+            .background(Color.Transparent)
+            .align(Alignment.CenterVertically)
 
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
-                contentDescription = stringResource(id = R.string.app_name),
-                contentScale = ContentScale.Fit,
-                modifier = imageModifier,
-                alignment = Alignment.Center
-            )
-            Text(
-                style = MaterialTheme.typography.body2,
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = stringResource(id = R.string.app_name),
+            contentScale = ContentScale.Fit,
+            modifier = imageModifier,
+            alignment = Alignment.Center
+        )
+        Text(
+            style = MaterialTheme.typography.titleSmall,
 //            modifier = Modifier.weight(1f),
-                textAlign = TextAlign.Center,
-                text = stringResource(R.string.full_name)
-            )
-        }
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.primary,
+            text = stringResource(R.string.full_name)
+        )
+    }
 
 }
 

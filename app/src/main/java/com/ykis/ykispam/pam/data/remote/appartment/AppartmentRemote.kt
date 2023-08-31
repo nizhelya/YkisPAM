@@ -1,13 +1,12 @@
 package com.ykis.ykispam.pam.data.remote.appartment
 
-import com.ykis.ykispam.core.Response
 import com.ykis.ykispam.pam.data.remote.GetSimpleResponse
-import com.ykis.ykispam.pam.domain.appartment.AppartmentEntity
+import com.ykis.ykispam.pam.domain.apartment.ApartmentEntity
 import com.ykis.ykispam.pam.domain.type.Either
 import com.ykis.ykispam.pam.domain.type.Failure
 
-interface AppartmentRemote {
-    fun getAppartmentsByUser(uid: String): Either<Failure, List<AppartmentEntity>>
+interface ApartmentRemote {
+    fun getApartmentsByUser(uid: String): Either<Failure, List<ApartmentEntity>>
 
     fun deleteFlatByUser(
         addressId: Int,
@@ -21,5 +20,5 @@ interface AppartmentRemote {
         uid: String
     ): Either<Failure, GetSimpleResponse>
 
-    fun getFlatById(addressId: Int,uid: String): Either<Failure, AppartmentEntity>
+    fun getFlatById(addressId: Int,uid: String): Either<Failure, ApartmentEntity>
 }

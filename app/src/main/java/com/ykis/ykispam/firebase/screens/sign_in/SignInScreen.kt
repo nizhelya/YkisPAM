@@ -7,18 +7,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.common.api.ApiException
@@ -38,7 +42,7 @@ import com.ykis.ykispam.R.drawable as AppIcon
 import com.ykis.ykispam.R.string as AppText
 
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignInScreen(
     openAndPopUp: (String, String) -> Unit,
@@ -46,53 +50,67 @@ fun SignInScreen(
     modifier: Modifier = Modifier,
     viewModel: SignInViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState
-    val keyboard = LocalSoftwareKeyboardController.current
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .verticalScroll(rememberScrollState())
-            .background(color = MaterialTheme.colors.background),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        BasicToolbar(AppText.login_details, isFullScreen = true)
-        Spacer(modifier = Modifier.smallSpacer())
-        LogoImage()
-        Spacer(modifier = Modifier.smallSpacer())
-        EmailField(uiState.email, viewModel::onEmailChange, modifier)
-        PasswordField(uiState.password, viewModel::onPasswordChange, modifier)
-
-        RegularCardEditor(
-            AppText.sign_in,
-            AppIcon.ic_action_email,
-            "",
-            Modifier.card()
+    Row( modifier = modifier
+        .fillMaxWidth()
+        .fillMaxHeight(),
+//        .verticalScroll(rememberScrollState())
+//        .background(color = MaterialTheme.colorScheme.background),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center) {
+        Column(
+            modifier = modifier
+                .widthIn(0.dp, 460.dp)
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState()),
+//                .background(color = MaterialTheme.colorScheme.background),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            keyboard?.hide()
-            viewModel.onSignInClick(openScreen)
-        }
-        Spacer(modifier = Modifier.smallSpacer())
-        BasicLinkButton(AppText.forgot_password, Modifier.textButton()) {
-            viewModel.onForgotPasswordClick()
-        }
-        Spacer(modifier = Modifier.smallSpacer())
-        BasicLinkButton(AppText.no_account, Modifier.textButton()) {
-            viewModel.onSignUpClick(openScreen)
-        }
-        Spacer(modifier = Modifier.smallSpacer())
-        RegularCardEditor(
-            AppText.sign_in_with_google,
-            AppIcon.ic_google_logo,
-            "",
-            Modifier.card()
-        ) {
-            viewModel.oneTapSignIn()
-        }
+            val singInUiState = viewModel.singInUiState
+            val keyboard = LocalSoftwareKeyboardController.current
+            BasicToolbar(AppText.login_details, isFullScreen = true)
+            Spacer(modifier = Modifier.smallSpacer())
+            LogoImage()
+            Spacer(modifier = Modifier.smallSpacer())
+            Column(
+                modifier = Modifier.padding(PaddingValues(8.dp))
+                    .widthIn(0.dp, 480.dp),
+            )
+            {
+                EmailField(singInUiState.email, viewModel::onEmailChange, modifier)
+                PasswordField(singInUiState.password, viewModel::onPasswordChange, modifier)
 
+                RegularCardEditor(
+                    AppText.sign_in,
+                    AppIcon.ic_action_email,
+                    "",
+                    Modifier.card()
+                ) {
+                    keyboard?.hide()
+                    viewModel.onSignInClick(openScreen)
+                }
+                Spacer(modifier = Modifier.smallSpacer())
+                BasicLinkButton(AppText.forgot_password, Modifier.textButton()) {
+                    viewModel.onForgotPasswordClick()
+                }
+                Spacer(modifier = Modifier.smallSpacer())
+                BasicLinkButton(AppText.no_account, Modifier.textButton()) {
+                    viewModel.onSignUpClick(openScreen)
+                }
+                Spacer(modifier = Modifier.smallSpacer())
+                RegularCardEditor(
+                    AppText.sign_in_with_google,
+                    AppIcon.ic_google_logo,
+                    "",
+                    Modifier.card()
+                ) {
+                    viewModel.oneTapSignIn()
+                }
+            }
+        }
     }
+
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -122,7 +140,7 @@ fun SignInScreen(
     SignInWithGoogle(
         navigateToHomeScreen = { signedIn ->
             if (!signedIn) {
-                viewModel.navigateToProfileScreen(openScreen)
+                viewModel.navigateToApartmentScreen(openScreen)
             }
         }
     )

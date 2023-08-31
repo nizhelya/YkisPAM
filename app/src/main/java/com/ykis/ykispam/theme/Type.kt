@@ -1,90 +1,84 @@
 package com.ykis.ykispam.theme
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import com.ykis.ykispam.R
 
+// Material 3 typography
 
-private val EczarFontFamily = FontFamily(
-    Font(R.font.eczar_regular),
-    Font(R.font.eczar_semibold, FontWeight.SemiBold)
-)
-private val RobotoCondensed = FontFamily(
-    Font(R.font.robotocondensed_regular),
-    Font(R.font.robotocondensed_light, FontWeight.Light),
-    Font(R.font.robotocondensed_bold, FontWeight.Bold)
-)
-
-val Typography = Typography(
-    defaultFontFamily = RobotoCondensed,
-    h1 = TextStyle(
-        fontWeight = FontWeight.W100,
-        fontSize = 96.sp,
-    ),
-    h2 = TextStyle(
+val replyTypography = Typography(
+    headlineLarge = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 44.sp,
-        fontFamily = EczarFontFamily,
-        letterSpacing = 1.5.sp
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
+        letterSpacing = 0.sp
     ),
-    h3 = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp
+    headlineMedium = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 28.sp,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp
     ),
-    h4 = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 34.sp
+    headlineSmall = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp
     ),
-    h5 = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 24.sp
+    titleLarge = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
     ),
-    h6 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
-        lineHeight = 20.sp,
-        fontFamily = EczarFontFamily,
-        letterSpacing = 3.sp
-    ),
-    subtitle1 = TextStyle(
-        fontWeight = FontWeight.Light,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 3.sp
-    ),
-    subtitle2 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        letterSpacing = 0.1.em
-    ),
-    body1 = TextStyle(
-        fontWeight = FontWeight.Normal,
+    titleMedium = TextStyle(
+        fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
-        letterSpacing = 0.1.em
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp
     ),
-    body2 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.em
-    ),
-    button = TextStyle(
+    titleSmall = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp
+    ),
+    bodyLarge = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp
+    ),
+    bodyMedium = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
+    ),
+    bodySmall = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.2.em
+        letterSpacing = 0.4.sp
     ),
-    caption = TextStyle(
-        fontWeight = FontWeight.W500,
-        fontSize = 12.sp
+    labelLarge = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp
     ),
-    overline = TextStyle(
-        fontWeight = FontWeight.W500,
-        fontSize = 10.sp
+    labelMedium = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
+    ),
+    labelSmall = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
     )
 )

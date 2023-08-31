@@ -1,14 +1,16 @@
 [versions]
-agp = "8.2.0-alpha15"
-androidx-activity-activity-compose = "1.7.2"
+accompanist-adaptive = "0.26.2-beta"
+agp = "8.3.0-alpha01"
 androidx-activity-compose = "1.7.2"
+androidx-compose-bom = "2023.08.00"
+
 appcompat = "1.6.1"
 coil-compose = "2.3.0"
 #core-splashscreen = "1.0.1"
 github-XPAY_Android_SDK = "1.0.0"
 hilt-android = "2.46"
 hilt-navigation-compose = "1.0.0"
-kotlin = "1.8.21"
+kotlin = "1.9.0"
 core-ktx = "1.10.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -16,37 +18,63 @@ espresso-core = "3.5.1"
 legacy-support-v4 = "1.0.0"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.2"
-compose-bom = "2023.06.00"
-firebase-bom = "32.1.0"
+firebase-bom = "32.2.2"
 google = "4.3.15"
-crashlytics = "2.9.4"
-material = "1.4.3"
-navigation-compose = "2.6.0"
+crashlytics = "2.9.8"
+#material = "1.4.3"
+androidx-navigation-compose = "2.7.0"
 moshi-kotlin = "1.13.0"
 okhttp = "5.0.0-alpha.2"
 retrofit = "2.9.0"
 constraintlayout = "2.1.4"
 
 perf = "1.4.2"
-hilt = "2.44"
+hilt = "2.46"
 kapt = "1.8.21"
-#ksp = "1.5.21-1.0.0-beta06"
-play-services-auth = "20.5.0"
-room-runtime = "2.6.0-alpha01"
-runtime-livedata = "1.4.3"
+#ksp = "1.5.30-1.0.0"
+play-services-auth = "20.6.0"
+room-runtime = "2.6.0-alpha03"
+runtime-livedata = "1.5.0"
 material3 = "1.1.1"
 constraintlayout-compose = "1.0.1"
+#SSJetPackComposeProgressButton = "1.0.6"
 
 [libraries]
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
+
+accompanist-adaptive = { module = "com.google.accompanist:accompanist-adaptive", version.ref = "accompanist-adaptive" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+androidx-compose-material = { module = "androidx.compose.material:material" }
+androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-materialWindow = { module = "androidx.compose.material3:material3-window-size-class" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
+androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-googlefonts = { module = "androidx.compose.ui:ui-text-google-fonts" }
+androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
+androidx-compose-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding" }
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
+
+
 #androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 androidx-appcompat = { group = "androidx.appcompat", name ="appcompat", version.ref = "appcompat" }
-androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 androidx-legacy-support-v4 = { group = "androidx.legacy" , name ="legacy-support-v4", version.ref = "legacy-support-v4" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-ktx" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle-runtime-ktx" }
-androidx-material = { group = "androidx.compose.material" , name = "material", version.ref = "material" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+
+
+
 androidx-room-compiler = { group = "androidx.room", name ="room-compiler", version.ref = "room-runtime" }
 androidx-room-ktx = { group = "androidx.room" ,name = "room-ktx", version.ref = "room-runtime" }
 androidx-room-runtime = { group = "androidx.room", name= "room-runtime", version.ref = "room-runtime" }
@@ -62,9 +90,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
@@ -74,17 +100,10 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi-kotlin" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
-ui = { group = "androidx.compose.ui", name = "ui" }
-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-ui-android = { group = "androidx.compose.ui", name = "ui-android" }
-
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+#SSJetPackComposeProgressButton = { module = "com.github.SimformSolutionsPvtLtd:SSJetPackComposeProgressButton", version.ref = "SSJetPackComposeProgressButton" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout-compose" }
-#material3 = { group = "androidx.compose.material3", name = "material3" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

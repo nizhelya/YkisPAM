@@ -15,8 +15,10 @@ import com.ykis.ykispam.firebase.model.service.repo.LogService
 import com.ykis.ykispam.firebase.model.service.repo.OneTapSignInResponse
 import com.ykis.ykispam.firebase.model.service.repo.SignInWithGoogleResponse
 import com.ykis.ykispam.firebase.screens.sign_in.components.SingInUiState
+import com.ykis.ykispam.navigation.APARTMENT_SCREEN
 import com.ykis.ykispam.navigation.PROFILE_SCREEN
 import com.ykis.ykispam.navigation.SIGN_UP_SCREEN
+import com.ykis.ykispam.navigation.SPLASH_SCREEN
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,23 +31,23 @@ class SignInViewModel @Inject constructor(
     logService: LogService
 ) : BaseViewModel(logService) {
 
-    var uiState by mutableStateOf(SingInUiState())
+    var singInUiState by mutableStateOf(SingInUiState())
         private set
     var oneTapSignInResponse by mutableStateOf<OneTapSignInResponse>(Response.Success(null))
         private set
     var signInWithGoogleResponse by mutableStateOf<SignInWithGoogleResponse>(Response.Success(null))
         private set
     private val email
-        get() = uiState.email
+        get() = singInUiState.email
     private val password
-        get() = uiState.password
+        get() = singInUiState.password
 
     fun onEmailChange(newValue: String) {
-        uiState = uiState.copy(email = newValue)
+        singInUiState = singInUiState.copy(email = newValue)
     }
 
     fun onPasswordChange(newValue: String) {
-        uiState = uiState.copy(password = newValue)
+        singInUiState = singInUiState.copy(password = newValue)
     }
 
 
@@ -62,7 +64,7 @@ class SignInViewModel @Inject constructor(
 
         launchCatching {
             firebaseService.firebaseSignInWithEmailAndPassword(email, password)
-            openScreen(PROFILE_SCREEN)
+            openScreen(APARTMENT_SCREEN)
         }
 
     }
@@ -96,9 +98,9 @@ class SignInViewModel @Inject constructor(
         openScreen(SIGN_UP_SCREEN)
     }
 
-    fun navigateToProfileScreen(openScreen: (String) -> Unit) {
+    fun navigateToApartmentScreen(openScreen: (String) -> Unit) {
         launchCatching {
-            openScreen(PROFILE_SCREEN)
+            openScreen(SPLASH_SCREEN)
         }
     }
 }

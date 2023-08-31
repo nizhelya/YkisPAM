@@ -21,11 +21,11 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,8 +43,8 @@ fun BasicLinkButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit
   TextButton(onClick = action, modifier = modifier) {
     Text(
       text = stringResource(text),
-      color= MaterialTheme.colors.onSurface,
-      style = MaterialTheme.typography.body2,
+      color= MaterialTheme.colorScheme.onSurface,
+      style = MaterialTheme.typography.titleSmall,
       textAlign = TextAlign.Center,
       fontStyle = FontStyle.Italic,
       textDecoration = TextDecoration.Underline
@@ -59,8 +59,8 @@ fun BasicButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
     modifier = modifier,
     colors =
     ButtonDefaults.buttonColors(
-      backgroundColor = MaterialTheme.colors.primary,
-      contentColor = MaterialTheme.colors.onPrimary
+      containerColor = MaterialTheme.colorScheme.primary,
+      contentColor = MaterialTheme.colorScheme.onPrimary
     )
   ) {
     Text(text = stringResource(text), fontSize = 16.sp)
@@ -75,7 +75,7 @@ fun BasicImageButton(@StringRes text: Int,@DrawableRes img:Int, modifier: Modifi
     shape = RoundedCornerShape(20.dp),
     colors =
     ButtonDefaults.buttonColors(
-      backgroundColor = Color(0xFF3A4C2B),
+      containerColor = Color(0xFF3A4C2B),
       contentColor = Color(0xFFFFB945),
     )
   ) {
@@ -93,7 +93,7 @@ fun DialogConfirmButton(@StringRes text: Int, action: () -> Unit) {
     onClick = action,
     colors =
       ButtonDefaults.buttonColors(
-        backgroundColor = Color(0xFF3A4C2B),
+        containerColor = Color(0xFF3A4C2B),
         contentColor = Color(0xFFFFB945)
       )
   ) {
@@ -107,7 +107,7 @@ fun DialogCancelButton(@StringRes text: Int, action: () -> Unit) {
     onClick = action,
     colors =
       ButtonDefaults.buttonColors(
-        backgroundColor = Color(0xFF516440),
+        containerColor = Color(0xFF516440),
         contentColor = Color(0xFFFFB945)
       )
   ) {

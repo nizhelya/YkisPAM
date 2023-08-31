@@ -14,14 +14,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -38,7 +37,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.ykis.ykispam.R
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SettingsNumber(
     @DrawableRes icon: Int,
@@ -84,13 +82,13 @@ fun SettingsNumber(
                 Column(modifier = Modifier.padding(8.dp)) {
                     Text(
                         text = stringResource(id = name),
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Start,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = state.value,
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.bodySmall,
                         textAlign = TextAlign.Start,
                     )
                 }
@@ -119,7 +117,7 @@ private fun TextEditNumberDialog(
     }
 
     Surface(
-        color = MaterialTheme.colors.surface
+        color = MaterialTheme.colorScheme.surface
     ) {
 
         Column(

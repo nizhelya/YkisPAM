@@ -1,27 +1,13 @@
 package com.ykis.ykispam.theme
 
 
-import androidx.compose.material.darkColors
 import androidx.compose.ui.graphics.Color
-
-
-val Green500 = Color(0xFF1EB980)
-val DarkBlue900 = Color(0xFF26282F)
-val MediumDark900 = Color(0xFF26282F)
-
-// Rally is always dark themed.
-val ColorPalette = darkColors(
-    primary = Green500,
-    surface = DarkBlue900,
-    onSurface = Color.White,
-    background = DarkBlue900,
-    onBackground = Color.White
-)
 
 
 val replyLightPrimary = Color(0xFF825500)
 val replyLightOnPrimary = Color(0xFFFFFFFF)
-val replyLightPrimaryContainer = Color(0xFFFFDDAE)
+val replyLightPrimaryContainer = Color(0xFF8BAED0)
+//val replyLightPrimaryContainer = Color(0xFFFFDDAE)
 val replyLightOnPrimaryContainer = Color(0xFF2A1800)
 val replyLightSecondary = Color(0xFF6F5B40)
 val replyLightOnSecondary = Color(0xFFFFFFFF)
@@ -72,3 +58,4 @@ val replyDarkOutline = Color(0xFF9C8F80)
 val replyDarkInverseOnSurface = Color(0xFF32281A)
 val replyDarkInverseSurface = Color(0xFFEAE1D9)
 val replyDarkPrimaryInverse = Color(0xFF624000)
+val ColorBlueIceberg = Color(0xFF8BAED0)

@@ -44,10 +44,13 @@ class SignUpViewModel @Inject constructor(
     private val configurationService: ConfigurationService,
     logService: LogService
 ) : BaseViewModel(logService) {
-    val agreementTitle by mutableStateOf(configurationService.agreementTitle)
-    val agreementText by mutableStateOf(configurationService.agreementText)
+    var agreementTitle by mutableStateOf(configurationService.agreementTitle)
+        private set
 
-    init {
+    var agreementText by mutableStateOf(configurationService.agreementText)
+        private set
+
+    fun init() {
         launchCatching { configurationService.fetchConfiguration() }
     }
 
@@ -61,25 +64,25 @@ class SignUpViewModel @Inject constructor(
         private set
 
 
-    var uiState = mutableStateOf(SignUpUiState())
+    var signUpUiState = mutableStateOf(SignUpUiState())
         private set
 
     private val email
-        get() = uiState.value.email
+        get() = signUpUiState.value.email
     private val password
-        get() = uiState.value.password
+        get() = signUpUiState.value.password
 
 
     fun onEmailChange(newValue: String) {
-        uiState.value = uiState.value.copy(email = newValue)
+        signUpUiState.value = signUpUiState.value.copy(email = newValue)
     }
 
     fun onPasswordChange(newValue: String) {
-        uiState.value = uiState.value.copy(password = newValue)
+        signUpUiState.value = signUpUiState.value.copy(password = newValue)
     }
 
     fun onRepeatPasswordChange(newValue: String) {
-        uiState.value = uiState.value.copy(repeatPassword = newValue)
+        signUpUiState.value = signUpUiState.value.copy(repeatPassword = newValue)
     }
 
     fun signUpWithEmailAndPassword() {
@@ -93,7 +96,7 @@ class SignUpViewModel @Inject constructor(
             return
         }
 
-        if (!password.passwordMatches(uiState.value.repeatPassword)) {
+        if (!password.passwordMatches(signUpUiState.value.repeatPassword)) {
             SnackbarManager.showMessage(AppText.password_match_error)
             return
         }
@@ -104,17 +107,17 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    fun sendEmailVerification(restartApp: (String) -> Unit) {
+    fun sendEmailVerification(openScreen: (String) -> Unit) {
         launchCatching {
             sendEmailVerificationResponse = Response.Loading
             sendEmailVerificationResponse = firebaseService.sendEmailVerification()
-            restartApp(SPLASH_SCREEN)
+            openScreen(SPLASH_SCREEN)
         }
 
     }
 
-    fun navigateBack(restartApp: (String) -> Unit) {
-        restartApp(SIGN_IN_SCREEN)
+    fun navigateBack(openScreen: (String) -> Unit) {
+        openScreen(SIGN_IN_SCREEN)
     }
 
     fun showVerifyEmailMessage() {

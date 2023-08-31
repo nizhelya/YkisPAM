@@ -22,15 +22,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,14 +56,16 @@ fun BackIcon(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BasicToolbar(
     @StringRes title: Int,
     isFullScreen: Boolean
 ) {
     TopAppBar(
-        backgroundColor = MaterialTheme.colors.background,
-        elevation = 12.dp,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.inverseOnSurface
+        ),
         title = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -69,7 +74,7 @@ fun BasicToolbar(
             ) {
                 Text(
                     text = stringResource(title),
-                    color = MaterialTheme.colors.onSurface
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -78,56 +83,58 @@ fun BasicToolbar(
 }
 
 
-    @Composable
-    fun ActionToolbar(
-        @StringRes title: Int,
-        @DrawableRes endActionIcon: Int,
-        modifier: Modifier,
-        isFullScreen: Boolean,
-        endAction: () -> Unit
-    ) {
-        TopAppBar(
-            modifier = modifier,
-            backgroundColor = MaterialTheme.colors.background,
-            title = {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = if (isFullScreen) Alignment.CenterHorizontally
-                    else Alignment.Start
-                ) {
-                    Text(
-                        text = stringResource(title),
-                        style = MaterialTheme.typography.body1,
-                        color = MaterialTheme.colors.onSurface
-                    )
-                }
-            },
-            navigationIcon = {
-                if (isFullScreen) {
-                    IconButton(
-                        onClick = endAction,
-                        modifier = Modifier.padding(8.dp),
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ActionToolbar(
+    @StringRes title: Int,
+    @DrawableRes endActionIcon: Int,
+    modifier: Modifier,
+    isFullScreen: Boolean,
+    endAction: () -> Unit
+) {
+    TopAppBar(
+        modifier = modifier,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.inverseOnSurface
+        ),         title = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = if (isFullScreen) Alignment.CenterHorizontally
+                else Alignment.Start
+            ) {
+                Text(
+                    text = stringResource(title),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        },
+        navigationIcon = {
+            if (isFullScreen) {
+                IconButton(
+                    onClick = endAction,
+                    modifier = Modifier.padding(8.dp),
 
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(id = R.string.back_button),
-                            modifier = Modifier.size(14.dp)
-                        )
-                    }
-                }
-            },
-            actions = {
-                IconButton(
-                    onClick = { /*TODO*/ },
-                ) {
                     Icon(
-                        imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(id = R.string.more_options_button),
-                        tint = MaterialTheme.colors.onSurface
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back_button),
+                        modifier = Modifier.size(14.dp)
                     )
                 }
-
             }
-        )
-    }
+        },
+        actions = {
+            IconButton(
+                onClick = { /*TODO*/ },
+            ) {
+                Icon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = stringResource(id = R.string.more_options_button),
+                    tint = MaterialTheme.colorScheme.onSurface
+                )
+            }
+
+        }
+    )
+}

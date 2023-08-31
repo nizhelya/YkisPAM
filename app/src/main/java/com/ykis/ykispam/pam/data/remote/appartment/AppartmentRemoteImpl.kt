@@ -3,25 +3,25 @@ package com.ykis.ykispam.pam.data.remote.appartment
 import com.ykis.ykispam.pam.data.remote.GetSimpleResponse
 import com.ykis.ykispam.pam.data.remote.core.Request
 import com.ykis.ykispam.pam.data.remote.api.ApiService
-import com.ykis.ykispam.pam.domain.appartment.AppartmentEntity
+import com.ykis.ykispam.pam.domain.apartment.ApartmentEntity
 import com.ykis.ykispam.pam.domain.type.Either
 import com.ykis.ykispam.pam.domain.type.Failure
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AppartmentRemoteImpl @Inject constructor(
+class ApartmentRemoteImpl @Inject constructor(
     private val request: Request,
     private val apiService: ApiService
-) : AppartmentRemote {
+) : ApartmentRemote {
 
-    override fun getAppartmentsByUser(uid: String): Either<Failure, List<AppartmentEntity>> {
+    override fun getApartmentsByUser(uid: String): Either<Failure, List<ApartmentEntity>> {
         return request.make(
-            apiService.getAppartmentsByUser(
-                createGetAppartmentsByUserMap(uid)
+            apiService.getApartmentsByUser(
+                createGetApartmentsByUserMap(uid)
             )
         ) {
-            it.appartments
+            it.apartments
         }
     }
 
@@ -61,18 +61,18 @@ class AppartmentRemoteImpl @Inject constructor(
     override fun getFlatById(
         addressId: Int,
         uid: String
-    ): Either<Failure, AppartmentEntity> {
+    ): Either<Failure, ApartmentEntity> {
         return request.make(
             apiService.getFlatById(
                 createRequestByAddressId(
                     addressId,uid)
             )
         ) {
-            it.appartments[0]
+            it.apartments[0]
         }
     }
 
-    private fun createGetAppartmentsByUserMap(uid: String): Map<String, String> {
+    private fun createGetApartmentsByUserMap(uid: String): Map<String, String> {
         val map = HashMap<String, String>()
         map.put(ApiService.PARAM_USER_ID, uid)
         return map

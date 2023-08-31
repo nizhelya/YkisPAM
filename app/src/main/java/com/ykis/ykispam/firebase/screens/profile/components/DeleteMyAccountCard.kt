@@ -1,8 +1,7 @@
 package com.ykis.ykispam.firebase.screens.profile.components
 
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,8 +16,6 @@ import com.ykis.ykispam.core.ext.card
 import com.ykis.ykispam.R.string as AppText
 import com.ykis.ykispam.R.drawable as AppIcon
 
-@OptIn(ExperimentalMaterialApi::class)
-@ExperimentalMaterialApi
 @Composable
 private fun DeleteMyAccountCard(deleteMyAccount: () -> Unit) {
     var showWarningDialog by remember { mutableStateOf(false) }

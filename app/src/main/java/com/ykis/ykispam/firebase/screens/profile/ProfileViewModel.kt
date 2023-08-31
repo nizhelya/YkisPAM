@@ -3,7 +3,6 @@ package com.ykis.ykispam.firebase.screens.profile
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.viewModelScope
 import com.ykis.ykispam.BaseViewModel
 import com.ykis.ykispam.R
 import com.ykis.ykispam.core.Response
@@ -14,10 +13,10 @@ import com.ykis.ykispam.firebase.model.service.repo.ReloadUserResponse
 import com.ykis.ykispam.firebase.model.service.repo.RevokeAccessResponse
 import com.ykis.ykispam.firebase.model.service.repo.SendEmailVerificationResponse
 import com.ykis.ykispam.firebase.model.service.repo.SignOutResponse
+import com.ykis.ykispam.navigation.EXIT_SCREEN
 import com.ykis.ykispam.navigation.PROFILE_SCREEN
 import com.ykis.ykispam.navigation.SPLASH_SCREEN
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 

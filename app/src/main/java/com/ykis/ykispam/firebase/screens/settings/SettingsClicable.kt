@@ -10,14 +10,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.ykis.ykispam.R
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsClickable(
     @DrawableRes icon: Int,
@@ -59,8 +59,8 @@ fun SettingsClickable(
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = stringResource(id = name),
-                        style = MaterialTheme.typography.subtitle1.copy(
-                            color = MaterialTheme.colors.surface
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            color = MaterialTheme.colorScheme.surface
                         ),
                         modifier = Modifier
                             .padding(16.dp),
@@ -71,7 +71,7 @@ fun SettingsClickable(
                 Spacer(modifier = Modifier.weight(1.0f))
                 Icon(
                     Icons.Rounded.KeyboardArrowRight,
-                    tint = MaterialTheme.colors.onSurface,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = stringResource(id = R.string.ic_arrow_forward)
                 )
             }

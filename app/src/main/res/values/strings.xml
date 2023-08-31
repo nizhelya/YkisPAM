@@ -2,6 +2,27 @@
     <string name="app_name">ЮКІС</string>
     <string name="full_name">Южненська Комунальна\nІнформаційна Система</string>
 
+<!--    reply-->
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="tab_inbox">Inbox</string>
+    <string name="tab_article">Articles</string>
+    <string name="tab_dm">Direct Messages</string>
+    <string name="tab_groups">Groups</string>
+
+    <string name="search">Search</string>
+    <string name="search_replies">Search replies</string>
+    <string name="reply">Reply</string>
+    <string name="reply_all">Reply All</string>
+
+    <string name="compose">Compose</string>
+
+    <string name="empty_screen_title">Screen under construction</string>
+    <string name="empty_screen_subtitle">This screen is still under construction. This sample will help you learn about adaptive layouts in Jetpack Compose</string>
+
+    <string name="messages">Messages</string>
+    <string name="four_hours_ago">4 hrs ago</string>
+<!--    end reply-->
+
     <!--    Firebase-->
     //IDs
     <string name="web_client_id">126951826811-gp5ltjphmgg9gam22dku7rogbl6b8nk1.apps.googleusercontent.com</string>
@@ -18,6 +39,30 @@
     <string name="access_revoked_message">Ваш доступ скасовано.</string>
     <string name="email_not_verified_message">Ваша електронна пошта не підтверджена.</string>
     <string name="repeat_email_not_verified_message">надіслати ще раз</string>
+    <string name="agreement_title">Згода на обробку персональних даних.</string>
+    <string name="agreement_text"> Я, клієнт порталу «Южненська Комунальна Інформаційна Система»,
+        даю згоду на зберігання та обробку моїх персональних даних,
+        а саме: прізвище, і`мя, по батькові, місце проживання, контактних телефонів,
+        адреси електронної пошти з боку адміністрації порталу на такі цілі:
+        Надання клієнтам даних із заборгованості перед комунальними підприємствами,
+        оплата комунальних послуг, а також інші інтернет-послуги.
+        Адміністрація порталу «Южненська Комунальна Інформаційна Система»
+        зобов`язується здійснювати обробку персональних даних відповідно до вимог законодавства
+        України з обробки персональних даних. Я погоджуюсь з тим, що мої персональні дані можуть
+        бути передані третім особам, а саме Комунальним підприємствам (службам) з якими у мене укладено договори,
+        якщо цього вимагають умови надання заявлених мною послуг. Я доручаю адміністрації порталу
+        «Южненська Комунальна Інформаційна Система», якщо цього вимагають правила або
+        Регламенти відповідних підприємств, служб, опублікувати мої персональні дані в базах даних,
+        реєстрів відповідних підприємств, служб, за формою та обсягами, необхідними для їх функціонування.
+        Я згоден з тим, що відмова від надання згоди на обробку персональних даних або її відкликання
+        може призвести до наступного: Відмова з боку адміністрації порталу «Южненська Комунальна
+        Інформаційна Система» у наданні відповідних послуг; Видалення чи припинення подальшого супроводу
+        та обробки персональних даних клієнта. Права клієнта стосовно його персональних даних зазначені
+        у ст. 8 Закону України "Про захист персональних даних". Якщо клієнт має намір відкликати свою згоду
+        на обробку його персональних даних з боку порталу «Южненська Комунальна Інформаційна Система»,
+        він здійснює таке відкликання шляхом направлення на адресу адміністрації відповідного
+        розпорядження листом на Email ykis.osbb@gmail.com. З повагою, адміністрація ЮКІС.
+</string>
 
     <string name="create_account_sign">Зареєструватись</string>
     <string name="alredy_verified">Вже перевірено?</string>
@@ -71,6 +116,8 @@
     <string name="more_options_button">More options</string>
 
     <!-- SettingsScreen -->
+    <string name="nikname">Логин</string>
+
     <string name="settings">Налаштування</string>
     <string name="sign_out">Вихід</string>
     <string name="delete_my_account">Видалити мій аккаунт</string>

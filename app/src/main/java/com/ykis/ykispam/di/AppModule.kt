@@ -7,7 +7,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.ykis.ykispam.firebase.model.service.repo.FirebaseService
 import com.ykis.ykispam.pam.data.AddressRepositoryImpl
-import com.ykis.ykispam.pam.data.AppartmentRepositoryImpl
+import com.ykis.ykispam.pam.data.ApartmentRepositoryImpl
 import com.ykis.ykispam.pam.data.FamilyRepositoryImpl
 import com.ykis.ykispam.pam.data.HeatMeterRepositoryImpl
 import com.ykis.ykispam.pam.data.HeatReadingRepositoryImpl
@@ -15,8 +15,8 @@ import com.ykis.ykispam.pam.data.PaymentRepositoryImpl
 import com.ykis.ykispam.pam.data.ServiceRepositoryImpl
 import com.ykis.ykispam.pam.data.WaterMeterRepositoryImpl
 import com.ykis.ykispam.pam.data.WaterReadingRepositoryImpl
-import com.ykis.ykispam.pam.data.cache.appartment.AppartmentCache
-import com.ykis.ykispam.pam.data.cache.dao.AppartmentDao
+import com.ykis.ykispam.pam.data.cache.apartment.ApartmentCache
+import com.ykis.ykispam.pam.data.cache.dao.ApartmentDao
 import com.ykis.ykispam.pam.data.cache.dao.FamilyDao
 import com.ykis.ykispam.pam.data.cache.dao.HeatMeterDao
 import com.ykis.ykispam.pam.data.cache.dao.HeatReadingDao
@@ -36,7 +36,7 @@ import com.ykis.ykispam.pam.data.cache.water.reading.WaterReadingCache
 import com.ykis.ykispam.pam.data.remote.address.AddressRemote
 import com.ykis.ykispam.pam.data.remote.api.ApiService
 import com.ykis.ykispam.pam.data.remote.api.ApiService.Companion.BASE_URL
-import com.ykis.ykispam.pam.data.remote.appartment.AppartmentRemote
+import com.ykis.ykispam.pam.data.remote.appartment.ApartmentRemote
 import com.ykis.ykispam.pam.data.remote.family.FamilyRemote
 import com.ykis.ykispam.pam.data.remote.heat.meter.HeatMeterRemote
 import com.ykis.ykispam.pam.data.remote.heat.reading.HeatReadingRemote
@@ -45,7 +45,7 @@ import com.ykis.ykispam.pam.data.remote.service.ServiceRemote
 import com.ykis.ykispam.pam.data.remote.water.meter.WaterMeterRemote
 import com.ykis.ykispam.pam.data.remote.water.reading.WaterReadingRemote
 import com.ykis.ykispam.pam.domain.address.AddressRepository
-import com.ykis.ykispam.pam.domain.appartment.AppartmentRepository
+import com.ykis.ykispam.pam.domain.apartment.ApartmentRepository
 import com.ykis.ykispam.pam.domain.family.FamilyRepository
 import com.ykis.ykispam.pam.domain.heat.meter.HeatMeterRepository
 import com.ykis.ykispam.pam.domain.heat.reading.HeatReadingRepository
@@ -122,8 +122,8 @@ object AppModule {
 
 
     @Provides
-    fun provideAppartmentDao(db: AppDatabase): AppartmentDao {
-        return db.appartmentDao()
+    fun provideApartmentDao(db: AppDatabase): ApartmentDao {
+        return db.apartmentDao()
     }
 
     @Provides
@@ -158,8 +158,8 @@ object AppModule {
     }
     @Singleton
     @Provides
-    fun provideAppartmentRepository(
-        appartmentRemote: AppartmentRemote,
+    fun provideApartmentRepository(
+        apartmentRemote: ApartmentRemote,
         userCache: UserCache,
         firebaseService: FirebaseService,
         familyCache: FamilyCache,
@@ -169,9 +169,9 @@ object AppModule {
         heatMeterCache : HeatMeterCache,
         waterReadingCache: WaterReadingCache,
         heatReadingCache: HeatReadingCache,
-        appartmentCache: AppartmentCache
-    ): AppartmentRepository {
-        return AppartmentRepositoryImpl(appartmentRemote,appartmentCache, familyCache,serviceCache, paymentCache,waterMeterCache , heatMeterCache,waterReadingCache, heatReadingCache,userCache)
+        apartmentCache: ApartmentCache
+    ): ApartmentRepository {
+        return ApartmentRepositoryImpl(apartmentRemote,apartmentCache, familyCache,serviceCache, paymentCache,waterMeterCache , heatMeterCache,waterReadingCache, heatReadingCache,userCache)
     }
 
     @Singleton
@@ -247,6 +247,7 @@ object AppModule {
     ): HeatReadingRepository {
         return  HeatReadingRepositoryImpl(heatReadingCache ,heatReadingRemote , userCache)
     }
+
     @ApplicationScope
     @Provides
     @Singleton

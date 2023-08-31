@@ -3,16 +3,18 @@ package com.ykis.ykispam.firebase.screens.profile.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,6 +33,7 @@ import com.ykis.ykispam.R.string as AppText
 import com.ykis.ykispam.R.drawable as AppIcon
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileTopBar(
     signOut: () -> Unit,
@@ -39,14 +42,13 @@ fun ProfileTopBar(
     var openMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
-        backgroundColor = MaterialTheme.colors.background,
-        elevation = 12.dp,
+        colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
         title = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                androidx.compose.material.Text(
+                Text(
                     text = stringResource(AppText.profile)
                 )
             }
@@ -63,7 +65,7 @@ fun ProfileTopBar(
                 modifier = Modifier
                     .fillMaxWidth()
 //                    .clip(RoundedCornerShape(20))
-                    .background(color = MaterialTheme.colors.background)
+                    .background(color = MaterialTheme.colorScheme.background)
 
             ) {
                 SignOutCard(signOut)
@@ -76,7 +78,6 @@ fun ProfileTopBar(
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun SignOutCard(signOut: () -> Unit) {
     var showWarningDialog by remember { mutableStateOf(false) }
@@ -102,7 +103,6 @@ private fun SignOutCard(signOut: () -> Unit) {
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun DeleteMyAccountCard(deleteMyAccount: () -> Unit) {
     var showWarningDialog by remember { mutableStateOf(false) }

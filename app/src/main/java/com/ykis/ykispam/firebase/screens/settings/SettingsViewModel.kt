@@ -16,8 +16,6 @@ import com.ykis.ykispam.firebase.model.service.repo.LogService
 import com.ykis.ykispam.firebase.model.service.repo.SendEmailVerificationResponse
 import com.ykis.ykispam.firebase.model.service.repo.SignUpResponse
 import com.ykis.ykispam.firebase.screens.sign_up.components.SignUpUiState
-import com.ykis.ykispam.navigation.SIGN_IN_SCREEN
-import com.ykis.ykispam.navigation.SPLASH_SCREEN
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

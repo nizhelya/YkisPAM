@@ -3,11 +3,13 @@ package com.ykis.ykispam.firebase.screens.sign_up.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,34 +28,35 @@ fun AgreementChekBox(
 
     ) {
     Card(
-        modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 4.dp),
-        backgroundColor = MaterialTheme.colors.background,
+        modifier = Modifier
+            .widthIn(0.dp, 480.dp)
+            .padding(4.dp),
+//        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.background),
 
-        ) {
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
+//            modifier = Modifier.widthIn(0.dp, 480.dp)
+
         ) {
             Checkbox(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
-                modifier = Modifier.padding(8.dp, 0.dp),
-                colors = CheckboxDefaults.colors(
-                    checkedColor = colorResource(AppColor.white)
-                )
+//                modifier = Modifier.padding(8.dp, end=8.dp),
+//                colors = CheckboxDefaults.colors(
+//                    checkedColor = colorResource(AppColor.white)
+//                )
             )
-            if (checked) {
-                Text(
-                    text = stringResource(AppText.agreement_check_checked),
-                    style = MaterialTheme.typography.body2
-                )
-            } else {
-                Text(
-                    text = stringResource(AppText.agreement_check),
-                    style = MaterialTheme.typography.body2
-                )
-            }
+            Text(
+                text = if (checked) {
+                    stringResource(AppText.agreement_check_checked)
+                } else {
+                    stringResource(AppText.agreement_check)
+                },
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(start = 2.dp, end = 16.dp),
+            )
+
         }
 
     }
