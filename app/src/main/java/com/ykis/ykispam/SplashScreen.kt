@@ -17,15 +17,17 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ykis.ykispam.core.composable.BasicButton
 import com.ykis.ykispam.core.ext.basicButton
 import com.ykis.ykispam.pam.screens.appartment.viewmodels.ApartmentViewModel
+import kotlinx.coroutines.delay
 import com.ykis.ykispam.R.string as AppText
+
+private const val SPLASH_TIMEOUT = 1000L
 
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
     openAndPopUp: (String, String) -> Unit,
     restartApp: (String) -> Unit,
-//    getApartments:(Boolean)->Unit,
-    viewModel: ApartmentViewModel = hiltViewModel()
+    viewModel: SplashViewModel = hiltViewModel()
 ) {
     val isUserSignedOut = viewModel.getAuthState().collectAsStateWithLifecycle().value
 
@@ -47,6 +49,7 @@ fun SplashScreen(
         }
     }
     LaunchedEffect(key1 = isUserSignedOut) {
+        delay(SPLASH_TIMEOUT)
         viewModel.onAppStart(isUserSignedOut, restartApp, openAndPopUp)
     }
 }

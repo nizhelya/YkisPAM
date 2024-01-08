@@ -55,13 +55,11 @@ class ApartmentViewModel @Inject constructor(
     private val getApartmentsUseCase: GetApartments,
     private val deleteFlatByUser: DeleteFlatByUser,
     private val addFlatByUser: AddFlatByUser,
-    private val updateBtiUseCase: UpdateBti,
     private val apartmentCacheImpl: ApartmentCacheImpl,
     private val networkHandler: NetworkHandler,
     private val logService: LogService,
 ) : BaseViewModel(logService) {
 
-    val showError = mutableStateOf(false)
     private val isEmailVerified get() = firebaseService.currentUser?.isEmailVerified ?: false
     val uid get() = firebaseService.uid
     private val displayName get() = firebaseService.displayName
@@ -89,32 +87,9 @@ class ApartmentViewModel @Inject constructor(
     private val _totalDebt = MutableLiveData<ServiceEntity?>()
     val totalDebt: LiveData<ServiceEntity?> get() = _totalDebt
 
-    private val _totalPay = MutableLiveData<Double>(0.0)
-    val totalPay: LiveData<Double> get() = _totalPay
-
-
     private val isConnected: Boolean get() = networkHandler.isConnected
     private val networkType: Int get() = networkHandler.networkType
-    // SplashScreen
-    fun getAuthState() = firebaseService.getAuthState(viewModelScope)
 
-    fun onAppStart(
-        isUserSignedOut: Boolean,
-        restartApp: (String) -> Unit,
-        openAndPopUp: (String, String) -> Unit
-    ) {
-        showError.value = false
-        if (isUserSignedOut) {
-            restartApp(SIGN_IN_SCREEN)
-        } else {
-            if (isEmailVerified) {
-                restartApp(APARTMENT_SCREEN)
-            } else {
-                openAndPopUp(VERIFY_EMAIL_SCREEN, SPLASH_SCREEN)
-
-            }
-        }
-    }
 //    fun initialize(addressId: Int) {
 //        if (addressId != 0) {
 //            launchCatching {
@@ -123,9 +98,7 @@ class ApartmentViewModel @Inject constructor(
 //        }
 //    }
     fun initialize() {
-        if (uid.isNotEmpty() ) {
             observeApartments()
-        }
     }
     fun closeDetailScreen() {
         _uiState.value = _uiState
@@ -193,33 +166,7 @@ class ApartmentViewModel @Inject constructor(
         secretKeyUiState = secretKeyUiState.copy(secretCode = newValue)
     }
 
-//    fun onAddApartmentClick(restartApp: (String) -> Unit) {
-//        if (secretCode.isBlank()) {
-//            SnackbarManager.showMessage(R.string.empty_field_error)
-//            return
-//        }
-//        launchCatching {
-//
-//            addFlatByUser(secretCode) { it ->
-//                it.either(::handleFailure) {
-//                    handleResultText(
-//                        it, _resultText
-//                    )
-//                }
-//                if (resultText.value?.success == 1) {
-//                    _uiState.value = _uiState.value.copy(
-//                        secretCode = secretCode
-//                    )
-//                    getApartmentsByUser(true)
-//                    SnackbarManager.showMessage(R.string.success_add_flat)
-//                }
-//
-//            }
-//
-//            restartApp(APARTMENT_SCREEN)
-//        }
-//
-//    }
+
     fun addApartment(restartApp: (String) -> Unit) {
         if (secretCode.isBlank()) {
             SnackbarManager.showMessage(R.string.empty_field_error)
@@ -241,7 +188,6 @@ class ApartmentViewModel @Inject constructor(
                     SnackbarManager.showMessage(R.string.success_add_flat)
                     restartApp(SPLASH_SCREEN)
                 }
-
             }
         }
 
@@ -315,8 +261,6 @@ class ApartmentViewModel @Inject constructor(
         restartApp(SPLASH_SCREEN)
 
     }
-
-
     private fun handleResultTextDelete(
         response: GetSimpleResponse,
         result: MutableLiveData<GetSimpleResponse>
@@ -328,14 +272,7 @@ class ApartmentViewModel @Inject constructor(
         }
 
     }
-//    fun addApartment(openScreen: (String) -> Unit) {
-//        openScreen(ADD_APARTMENT_SCREEN)
-//    }
-//    override fun onCleared() {
-//        super.onCleared()
-//        deleteFlatByUser.unsubscribe()
-//        updateBtiUseCase.unsubscribe()
-//    }
+
 }
 
 

@@ -63,7 +63,6 @@ fun YkisPamApp(
     getApartment: (Int, ContentType) -> Unit = { _, _ -> },
     navigateToDetail: (ContentDetail, ContentType) -> Unit = { _, _ -> }
 
-
 ) {
     val navigationType: NavigationType
     val contentType: ContentType
