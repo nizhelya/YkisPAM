@@ -52,6 +52,7 @@ fun ApartmentScreen(
 
 ) {
 
+
 //    val apartment by viewModel.apartment.observeAsState(ApartmentEntity())
 
     LaunchedEffect(key1 = baseUIState.apartments) {
@@ -67,6 +68,7 @@ LaunchedEffect(key1 = addressId) {
         closeDetailScreen()
     }
 }
+    
 if (contentType == ContentType.DUAL_PANE) {
     TwoPane(
         first = {

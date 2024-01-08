@@ -28,6 +28,7 @@ fun NavGraphBuilder.YkisPamGraph(
     displayFeatures: List<DisplayFeature>,
     appState: YkisPamAppState,
     baseUIState: BaseUIState,
+    isUserSignedOut: Boolean,
     getApartments: () -> Unit,
     closeDetailScreen: () -> Unit,
     navigateToDestination: (String) -> Unit,
@@ -40,9 +41,8 @@ fun NavGraphBuilder.YkisPamGraph(
     composable(SPLASH_SCREEN) {
         SplashScreen(
             openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
-            restartApp = { route -> appState.clearAndNavigate(route) },
-
-            )
+            isUserSignedOut = isUserSignedOut
+        )
     }
     composable(
         route = "$BTI_SCREEN$FLAT_ARG",

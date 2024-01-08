@@ -90,13 +90,26 @@ class ApartmentViewModel @Inject constructor(
     private val isConnected: Boolean get() = networkHandler.isConnected
     private val networkType: Int get() = networkHandler.networkType
 
-//    fun initialize(addressId: Int) {
-//        if (addressId != 0) {
-//            launchCatching {
-//                getFlatFromCache(addressId)
-//            }
-//        }
-//    }
+    val showError = mutableStateOf(false)
+    fun getAuthState() = firebaseService.getAuthState(viewModelScope)
+
+    fun onAppStart(
+        isUserSignedOut: Boolean,
+        openAndPopUp: (String, String) -> Unit
+    ) {
+        showError.value = false
+        if (isUserSignedOut) {
+            openAndPopUp(SIGN_IN_SCREEN, SPLASH_SCREEN)
+        } else {
+            if (isEmailVerified) {
+                openAndPopUp(APARTMENT_SCREEN, SPLASH_SCREEN)
+            } else {
+                openAndPopUp(VERIFY_EMAIL_SCREEN, SPLASH_SCREEN)
+
+            }
+        }
+    }
+
     fun initialize() {
             observeApartments()
     }

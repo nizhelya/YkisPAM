@@ -26,10 +26,10 @@ private const val SPLASH_TIMEOUT = 1000L
 fun SplashScreen(
     modifier: Modifier = Modifier,
     openAndPopUp: (String, String) -> Unit,
-    restartApp: (String) -> Unit,
-    viewModel: SplashViewModel = hiltViewModel()
+    isUserSignedOut:Boolean,
+    viewModel: ApartmentViewModel = hiltViewModel()
 ) {
-    val isUserSignedOut = viewModel.getAuthState().collectAsStateWithLifecycle().value
+//    val isUserSignedOut = viewModel.getAuthState().collectAsStateWithLifecycle().value
 
     Column(
         modifier =
@@ -42,7 +42,7 @@ fun SplashScreen(
         if (viewModel.showError.value) {
             Text(text = stringResource(AppText.generic_error))
             BasicButton(AppText.try_again, Modifier.basicButton()) {
-                    viewModel.onAppStart(isUserSignedOut, restartApp, openAndPopUp)
+                    viewModel.onAppStart(isUserSignedOut, openAndPopUp)
             }
         } else {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
@@ -50,6 +50,6 @@ fun SplashScreen(
     }
     LaunchedEffect(key1 = isUserSignedOut) {
         delay(SPLASH_TIMEOUT)
-        viewModel.onAppStart(isUserSignedOut, restartApp, openAndPopUp)
+        viewModel.onAppStart(isUserSignedOut, openAndPopUp)
     }
 }

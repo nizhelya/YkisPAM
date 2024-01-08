@@ -58,6 +58,7 @@ fun YkisPamApp(
     windowSize: WindowSizeClass,
     displayFeatures: List<DisplayFeature>,
     baseUIState: BaseUIState,
+    isUserSignedOut:Boolean,
     getApartments: () -> Unit ,
     closeDetailScreen: () -> Unit = {},
     getApartment: (Int, ContentType) -> Unit = { _, _ -> },
@@ -130,6 +131,7 @@ fun YkisPamApp(
         navigationContentPosition = navigationContentPosition, // PERMANENT_NAVIGATION_DRAWER содержимое TOP or CENTER
         appState = appState,
         baseUIState = baseUIState,
+        isUserSignedOut = isUserSignedOut,
         getApartments = getApartments,
         closeDetailScreen = closeDetailScreen,
         getApartment = getApartment,
@@ -146,6 +148,7 @@ fun NavigationWrapper(
     navigationContentPosition: NavigationContentPosition,
     appState: YkisPamAppState,
     baseUIState: BaseUIState,
+    isUserSignedOut: Boolean,
     getApartments: () -> Unit,
     closeDetailScreen: () -> Unit,
     getApartment: (Int, ContentType) -> Unit,
@@ -159,68 +162,94 @@ fun NavigationWrapper(
     val selectedDestination =
         navBackStackEntry?.destination?.route ?: baseUIState.selectedDestination
 
-    if (navigationType == NavigationType.PERMANENT_NAVIGATION_DRAWER) {
-        PermanentNavigationDrawer(drawerContent = {
-            PermanentNavigationDrawerContent(
-                baseUIState = baseUIState,
-                selectedDestination = selectedDestination,
-                navigationContentPosition = navigationContentPosition,
-                navigateToDestination = appState::navigateTo
-            )
-        }) {
-            AppContent(
-                appState = appState,
-                baseUIState = baseUIState,
-                navigationType = navigationType,
-                contentType = contentType,
-                displayFeatures = displayFeatures,
-                navigationContentPosition = navigationContentPosition,
-                navController = navController,
-                selectedDestination = selectedDestination,
-                navigateToDestination = appState::navigateTo,
-                getApartments = getApartments,
-                closeDetailScreen = closeDetailScreen,
-                getApartment = getApartment,
-                navigateToDetail = navigateToDetail
+    if (isUserSignedOut) {
+        AppContent(
+            appState = appState,
+            baseUIState = baseUIState,
+            isUserSignedOut = isUserSignedOut,
+            navigationType = navigationType,
+            contentType = contentType,
+            displayFeatures = displayFeatures,
+            navigationContentPosition = navigationContentPosition,
+            navController = navController,
+            selectedDestination = selectedDestination,
+            navigateToDestination = appState::navigateTo,
+            getApartments = getApartments,
+            closeDetailScreen = closeDetailScreen,
+            getApartment = getApartment,
+            navigateToDetail = navigateToDetail
 
-            )
-        }
+        )
     } else {
-        ModalNavigationDrawer(
-            drawerContent = {
-                ModalNavigationDrawerContent(
+
+
+        if (navigationType == NavigationType.PERMANENT_NAVIGATION_DRAWER) {
+            PermanentNavigationDrawer(drawerContent = {
+                PermanentNavigationDrawerContent(
                     baseUIState = baseUIState,
                     selectedDestination = selectedDestination,
                     navigationContentPosition = navigationContentPosition,
-                    navigateToDestination = appState::navigateTo,
-                    onDrawerClicked = {
-                        coroutineScope.launch {
-                            drawerState.close()
-                        }
-                    }
+                    navigateToDestination = appState::navigateTo
                 )
-            },
-            drawerState = drawerState
-        ) {
-            AppContent(
+            }) {
+                AppContent(
+                    appState = appState,
+                    baseUIState = baseUIState,
+                    isUserSignedOut = isUserSignedOut,
 
-                appState = appState,
-                baseUIState = baseUIState,
-                navigationType = navigationType,
-                contentType = contentType,
-                displayFeatures = displayFeatures,
-                navigationContentPosition = navigationContentPosition,
-                navController = navController,
-                selectedDestination = selectedDestination,
-                navigateToDestination = appState::navigateTo,
-                getApartments = getApartments,
-                closeDetailScreen = closeDetailScreen,
-                getApartment = getApartment,
-                navigateToDetail = navigateToDetail
+                    navigationType = navigationType,
+                    contentType = contentType,
+                    displayFeatures = displayFeatures,
+                    navigationContentPosition = navigationContentPosition,
+                    navController = navController,
+                    selectedDestination = selectedDestination,
+                    navigateToDestination = appState::navigateTo,
+                    getApartments = getApartments,
+                    closeDetailScreen = closeDetailScreen,
+                    getApartment = getApartment,
+                    navigateToDetail = navigateToDetail
 
+                )
+            }
+        } else {
+            ModalNavigationDrawer(
+                drawerContent = {
+                    ModalNavigationDrawerContent(
+                        baseUIState = baseUIState,
+                        selectedDestination = selectedDestination,
+                        navigationContentPosition = navigationContentPosition,
+                        navigateToDestination = appState::navigateTo,
+                        onDrawerClicked = {
+                            coroutineScope.launch {
+                                drawerState.close()
+                            }
+                        }
+                    )
+                },
+                drawerState = drawerState
             ) {
-                coroutineScope.launch {
-                    drawerState.open()
+                AppContent(
+
+                    appState = appState,
+                    baseUIState = baseUIState,
+                    isUserSignedOut = isUserSignedOut,
+
+                    navigationType = navigationType,
+                    contentType = contentType,
+                    displayFeatures = displayFeatures,
+                    navigationContentPosition = navigationContentPosition,
+                    navController = navController,
+                    selectedDestination = selectedDestination,
+                    navigateToDestination = appState::navigateTo,
+                    getApartments = getApartments,
+                    closeDetailScreen = closeDetailScreen,
+                    getApartment = getApartment,
+                    navigateToDetail = navigateToDetail
+
+                ) {
+                    coroutineScope.launch {
+                        drawerState.open()
+                    }
                 }
             }
         }
@@ -233,6 +262,7 @@ fun AppContent(
     modifier: Modifier = Modifier,
     appState: YkisPamAppState,
     baseUIState: BaseUIState,
+    isUserSignedOut: Boolean,
     navigationType: NavigationType,
     contentType: ContentType,
     displayFeatures: List<DisplayFeature>,
@@ -265,7 +295,7 @@ fun AppContent(
                 .padding(it)
                 .fillMaxSize()
         ) {
-            AnimatedVisibility(visible = navigationType == NavigationType.NAVIGATION_RAIL)
+            AnimatedVisibility(visible = navigationType == NavigationType.NAVIGATION_RAIL && !isUserSignedOut)
             {
                 ApartmentNavigationRail(
                     baseUIState = baseUIState,
@@ -285,6 +315,7 @@ fun AppContent(
                     modifier = Modifier.weight(1f),
                     appState = appState,
                     baseUIState = baseUIState,
+                    isUserSignedOut = isUserSignedOut,
                     navController = navController,
                     contentType = contentType,
                     displayFeatures = displayFeatures,
@@ -312,6 +343,7 @@ private fun YkisNavHost(
     modifier: Modifier = Modifier,
     appState: YkisPamAppState,
     baseUIState: BaseUIState,
+    isUserSignedOut: Boolean,
     navController: NavHostController,
     contentType: ContentType,
     displayFeatures: List<DisplayFeature>,
@@ -335,6 +367,7 @@ private fun YkisNavHost(
             displayFeatures,
             appState,
             baseUIState,
+            isUserSignedOut,
             getApartments,
             closeDetailScreen,
             navigateToDestination,
